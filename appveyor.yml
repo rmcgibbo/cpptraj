@@ -4,9 +4,12 @@ install:
   - "SET PATH=C:\\Program Files (x86)\\Git\\bin;%PATH%"
   - dir C:\msys64
   - dir C:\msys64\usr\bin
-  - "SET PATH=C:\\msys64\\usr\\bin;%PATH%"
-  - C:\msys64\usr\bin\bash configure gnu
-  - C:\msys64\usr\bin\make
+  - dir C:\MinGW\bin
+  - dir C:\MinGW\msys\1.0\usr\bin;
+  #- "SET PATH=C:\\msys64\\usr\\bin;%PATH%"  
+  - "SET PATH=C:\\MinGW\\msys\\1.0\\usr\\bin;C:\\MinGW\\bin;%PATH%"
+  - bash configure gnu
+  - make
 
 build: false
   
