@@ -84,14 +84,14 @@ CompileError() {
 # Test compile test program testp.cpp
 TestCxxProgram() {
   echo "$1"
-  COMPILELINE="$CXX $CXXFLAGS -o testp testp.cpp $2"
+  COMPILELINE="$CXX $CXXFLAGS $LDFLAGS -o testp testp.cpp $2"
   $COMPILELINE > /dev/null 2> compile.err
   ./testp | grep "Testing" > /dev/null
   status=$?
   if [[ $status -gt 0 ]] ; then
       CompileError "$COMPILELINE"
   fi
-  /bin/rm -f testp.cpp testp
+  rm -f testp.cpp testp
   echo "  OK"
 }
 
@@ -204,7 +204,7 @@ EOF
   if [[ $status -gt 0 ]] ; then
       CompileError "$CC $CFLAGS"
   fi
-  /bin/rm -f testp.c testp
+  rm -f testp.c testp
   echo "  OK"
   # C++
   echo "Testing C++ compiler:"
@@ -218,7 +218,7 @@ EOF
   if [[ $status -gt 0 ]] ; then
       CompileError "$CXX $CXXFLAGS"
   fi
-  /bin/rm -f testp.cpp testp
+  rm -f testp.cpp testp
   echo "  OK"
   # Fortran - only needed if pub_fft.F90 needs to be compiled.
   if [[ ! -z $FFT_DEPEND ]] ; then
@@ -234,7 +234,7 @@ EOF
     if [[ $status -gt 0 ]] ; then
         CompileError "$FC $FFLAGS"
     fi
-    /bin/rm -f testp.f testp
+    rm -f testp.f testp
     echo "  OK"
   fi
 }
