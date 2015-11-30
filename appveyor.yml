@@ -1,0 +1,12 @@
+os: Windows Server 2012
+
+install:
+  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+  - "SET PATH=C:\\Program Files (x86)\\Git\\bin;%PATH%"
+  - dir C:\msys64
+
+build:
+  - C:\msys64\msys2_shell.bat
+  - bash configure gnu
+  - make
+  
