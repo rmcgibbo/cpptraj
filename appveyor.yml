@@ -4,7 +4,8 @@ install:
   - "SET LIBRARY=%PYTHON%\\Library"
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - conda install -c omnia --yes --quiet mingwpy bzip2 zlib
-  - bash configure -noarpack -nomathlib -nonetcdf --with-bzlib=%LIBRARY% --with-zlib=%LIBRARY% gnu
+  - "SET CFLAGS=-IC:\\Miniconda3-x64\\Library\\include"
+  - bash configure -noarpack -nomathlib -nonetcdf gnu
   - make
 
 build: false
