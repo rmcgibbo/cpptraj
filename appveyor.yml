@@ -1,10 +1,10 @@
 os: Windows Server 2012
 install:
   - "SET PYTHON=C:\\Miniconda3-x64"
-  - "SET CONDA_LIBRARY=%PYTHON%\Library"
+  - "SET LIBRARY=%PYTHON%\\Library"
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - conda install -c omnia --yes --quiet mingwpy bzip2 zlib
-  - bash configure -noarpack -nomathlib -nonetcdf --with-bzlib=%CONDA_LIBRARY% --with-zlib=%CONDA_LIBRARY% gnu
+  - bash configure -noarpack -nomathlib -nonetcdf --with-bzlib=%LIBRARY% --with-zlib=%LIBRARY% gnu
   - make
 
 build: false
