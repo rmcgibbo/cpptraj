@@ -2,18 +2,8 @@ os: Windows Server 2012
 install:
   - "SET PYTHON=C:\\Miniconda3-x64"
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - conda install -c omnia --yes mingwpy
-
-  #- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-  #- "SET PATH=C:\\Program Files (x86)\\Git\\bin;%PATH%"
-  #- dir C:\msys64
-  #- dir C:\msys64\usr\bin
-  #- dir C:\MinGW\bin
-  #- dir C:\MinGW\msys\1.0;
-  #- "SET PATH=C:\\msys64\\usr\\bin;%PATH%"  
-  #- "SET PATH=C:\\MinGW\\bin;%PATH%"
-  - bash configure gnu
+  - conda install -c omnia --yes --quiet mingwpy bzip2 zlib
+  - bash configure -noarpack -nomathlib -nonetcdf gnu
   - make
 
 build: false
-  
