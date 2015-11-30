@@ -3,7 +3,6 @@ install:
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - "SET PATH=C:\\Program Files (x86)\\Git\\bin;%PATH%"
   - dir C:\msys64
-  - C:\msys64\mingw64_shell
   - "SET PATH=C:\\msys64\\usr\\bin;%PATH%"
   - C:\msys64\usr\bin\bash configure gnu
   - C:\msys64\usr\bin\make
