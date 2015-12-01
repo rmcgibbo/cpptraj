@@ -1,9 +1,10 @@
 os: Windows Server 2012
 install:
   - "SET PYTHON=C:\\Miniconda3-x64"
-  - "SET LIBRARY=%PYTHON%\\Library"
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;C:\\msys64\\usr\\bin;%PATH%"
   - conda install -c omnia --yes --quiet mingwpy bzip2 zlib
+
+  - "SET LIBRARY=%PYTHON%\\Library"
   - "copy %LIBRARY%\\lib\\libbz2.lib %LIBRARY%\\lib\\libbz2.a"
 
   - "SET CXXFLAGS=-IC:\\Miniconda3-x64\\Library\\include"
