@@ -2,7 +2,7 @@ os: Windows Server 2012
 
 install:
   #- C:/msys64/usr/bin/bash -lc "pacman -Sy --noconfirm base-devel"
-  - C:/msys64/usr/bin/bash -lc "pacman -Sy --noconfirm mingw-w64-x86_64-bzip2-1.0.6-2"
+  - C:/msys64/usr/bin/bash -lc "pacman -Sy --noconfirm bzip2 zlib"
   - C:/msys64/usr/bin/bash configure -noarpack -nomathlib -nonetcdf  
   - C:/msys64/usr/bin/make
 
