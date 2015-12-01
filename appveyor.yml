@@ -1,10 +1,11 @@
 os: Windows Server 2012
 
 install:
-  #- C:/msys64/usr/bin/bash -lc "pacman -Sy --noconfirm base-devel"
-  - C:/msys64/usr/bin/bash -lc "pacman -Sy --noconfirm bzip2 zlib"
-  - C:/msys64/usr/bin/bash configure -noarpack -nomathlib -nonetcdf  
-  - C:/msys64/usr/bin/make
+  - "SET PATH=C:\\msys64\\usr\\bin\\;%PATH%"
+  - bash -lc "pacman -Sy --noconfirm base-devel"
+  - bash -lc "pacman -Sy --noconfirm bzip2 zlib"
+  - bash configure -noarpack -nomathlib -nonetcdf  
+  - make
 
 #install:
 #  - "SET PYTHON=C:\\Miniconda3-x64"
