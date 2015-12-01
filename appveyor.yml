@@ -2,22 +2,9 @@ os: Windows Server 2012
 
 install:
   - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
-  - bash -lc "pacman -Sy --noconfirm bzip2 zlib"
-  - bash configure -noarpack -nomathlib -nonetcdf  
+  - bash -lc "pacman -Sy --noconfirm bzip2 zlib libreadline libreadline-devel"
+
+build_script:
+  - bash configure -noarpack -nomathlib -nonetcdf
   - make
 
-#install:
-#  - "SET PYTHON=C:\\Miniconda3-x64"
-#  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;C:\\msys64\\usr\\bin;%PATH%"
-#  - conda install -c omnia --yes --quiet mingwpy bzip2 zlib
-#
-#  - "SET LIBRARY=%PYTHON%\\Library"
-#  - "copy %LIBRARY%\\lib\\libbz2.lib %LIBRARY%\\lib\\libbz2.a"
-#
-#  - "SET CXXFLAGS=-IC:\\Miniconda3-x64\\Library\\include"
-#  - "SET LDFLAGS=-LC:\\Miniconda3-x64\\Library\\lib"
-#  - "SET CFLAGS=%CXXFLAGS%"
-#  - bash configure -noarpack -nomathlib -nonetcdf
-#  - make
-
-build: false

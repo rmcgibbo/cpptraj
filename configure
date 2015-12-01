@@ -36,6 +36,7 @@ UsageFull() {
   echo "    --with-lapack=<DIR>"
   echo "    --with-arpack=<DIR>"
   echo "    --with-fftw3=<DIR>"
+  echo "    --with-readline=<DIR>"
 #  echo "   --with-hdf5=<DIR>"
   echo "    -static    : Use static linking."
   echo "    -amberlib  : Use BLAS/ARPACK/LAPACK/NetCDF libraries from \$AMBERHOME"
@@ -574,6 +575,11 @@ while [[ ! -z $1 ]] ; do
        FFT_LIB="-lfftw3"
        FFT_DEPEND=""
        DIRECTIVES="$DIRECTIVES -DFFTW_FFT"
+       ;;
+     "--with-readline" )
+       INCLUDE="$INCLUDE -I$VALUE/include"
+       echo "Using READLINE in $VALUE"
+       READLINE="$VALUE"
        ;;
 #    "--with-hdf5" )
 #      INCLUDE="$INCLUDE -I$VALUE/include"
