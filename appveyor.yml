@@ -2,7 +2,9 @@ os: Windows Server 2012
 
 install:
   - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
+  - bash -lc "pacman -Sy --noconfirm"
   - bash -lc "pacman -Sy --noconfirm libreadline libreadline-devel"
+  - bash -lc "pacman -Sy --noconfirm mingw-w64-i686-openblas-git"
   # openblas
 
 build_script:
