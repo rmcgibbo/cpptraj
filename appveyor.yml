@@ -4,7 +4,7 @@ install:
   - "SET LIBRARY=%PYTHON%\\Library"
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - conda install -c omnia --yes --quiet mingwpy bzip2 zlib
-  - "xcopy %LIBRARY%\\lib\\libbz2.lib %LIBRARY%\\lib\\libbz2.a"
+  - "copy %LIBRARY%\\lib\\libbz2.lib %LIBRARY%\\lib\\libbz2.a"
 
   - "SET CXXFLAGS=-IC:\\Miniconda3-x64\\Library\\include"
   - "SET LDFLAGS=-LC:\\Miniconda3-x64\\Library\\lib"
