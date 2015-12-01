@@ -52,8 +52,13 @@ ambpdb.MPI:
 	@echo "INFO: ambpdb is not MPI-enabled. Skipping."
 	@echo ""
 
-$(READLINE): $(READLINE_HOME)/Makefile
+readline/libreadline.a: $(READLINE_HOME)/Makefile
 	cd $(READLINE_HOME) && $(MAKE) all
+
+noreadline:
+	@echo ""
+	@echo "Skipping READLINE support"
+	@echo ""
 
 $(FFT_DEPEND):  pub_fft.F90
 	$(FC) $(FPPFLAGS) -c $(FFLAGS) -o $@ pub_fft.F90
