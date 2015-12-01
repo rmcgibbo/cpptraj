@@ -13,8 +13,8 @@ all: cpptraj$(SFX)
 
 install: cpptraj$(SFX) ambpdb$(SFX) 
 	mv cpptraj$(SFX) $(CPPTRAJBIN)
-	(if [ -e "ambpdb" ]; then \
-	   mv ambpdb $(CPPTRAJBIN); \
+	(if [ -e "ambpdb$(SFX)" ]; then \
+	   mv ambpdb$(SFX) $(CPPTRAJBIN); \
 	 fi;) 
 
 findDepend: FindDepend.o 
@@ -38,9 +38,11 @@ nolibcpptraj:
 cpptraj$(SFX): $(OBJECTS) $(FFT_DEPEND) $(READLINE)
 	$(CXX)  -o cpptraj$(SFX) $(OBJECTS) $(READLINE) $(FFT_LIB) $(LDFLAGS)
 
-
 ambpdb: $(AMBPDB_OBJECTS)
 	$(CXX) -o ambpdb $(AMBPDB_OBJECTS) $(LDFLAGS)
+
+ambpdb.exe: $(AMBPDB_OBJECTS)
+	$(CXX) -o ambpdb.exe $(AMBPDB_OBJECTS) $(LDFLAGS)
 
 ambpdb.OMP:
 	@echo ""
