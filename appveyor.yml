@@ -2,7 +2,6 @@ os: Windows Server 2012
 
 install:
   - "SET PATH=C:\\msys64\\usr\\bin\\;%PATH%"
-  - bash -lc "pacman -Sy --noconfirm base-devel"
   - bash -lc "pacman -Sy --noconfirm bzip2 zlib"
   - bash configure -noarpack -nomathlib -nonetcdf  
   - make
