@@ -8,6 +8,6 @@ install:
   # openblas
 
 build_script:
-  - bash configure -noarpack -nomathlib -nonetcdf --with-readline=C:/msys64/mingw64/usr/lib/libreadline.dll.a
+  - bash configure -noarpack -nomathlib -nonetcdf --with-readline=C:\\msys64\\mingw64\\usr\\lib\\libreadline.dll.a
   - make
 
