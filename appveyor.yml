@@ -19,7 +19,7 @@ install:
 
   - "sh -lc \"exec 0</dev/null &&
       cd $APPVEYOR_BUILD_FOLDER/netcdf-4.3.3 &&
-      ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64 &&
+      ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64 --disable-dap &&
       make install
     \""
 
