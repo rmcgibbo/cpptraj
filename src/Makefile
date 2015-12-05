@@ -28,14 +28,14 @@ dependclean:
 
 libcpptraj: $(LIBCPPTRAJ)
 
-libcpptraj.so: $(OBJECTS) $(FFT_DEPEND) $(READLINE)
+libcpptraj.so: $(OBJECTS) $(FFT_DEPEND) $(READLINE_TARGET)
 	$(CXX)  -shared -o libcpptraj.so $(OBJECTS) $(FFT_LIB) $(LDFLAGS) $(READLINE)
 	/bin/mv libcpptraj.so $(CPPTRAJLIB)
 
 nolibcpptraj:
 	@(echo "Error: Cannot build libcpptraj; re-configure with '-shared'" ; exit 1 ; )
 
-cpptraj$(SFX): $(OBJECTS) $(FFT_DEPEND) $(READLINE)
+cpptraj$(SFX): $(OBJECTS) $(FFT_DEPEND) $(READLINE_TARGET)
 	$(CXX)  -o cpptraj$(SFX) $(OBJECTS) $(READLINE) $(FFT_LIB) $(LDFLAGS)
 
 ambpdb: $(AMBPDB_OBJECTS)
