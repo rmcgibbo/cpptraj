@@ -4,10 +4,11 @@ install:
   - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
   - bash -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-openblas mingw-w64-x86_64-arpack mingw-w64-x86_64-ncurses mingw-w64-x86_64-readline unzip"
   - bash -lc "wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip"
-  - bash -lc "unzip netcdf-4.3.3.zip"
-  - bash -lc "cd netcdf-4.3.3; ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64; make install"
+  - bash -lc "unzip netcdf-4.3.3.zip > /dev/null"
+  - bash -lc "cd netcdf-4.3.3; bash ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64; make install"
 
-  - echo 'CPPTRAJBIN=/c/Users/Administrator/cpptraj/bin'  > config.h
+
+  - echo CPPTRAJBIN=%APPVEYOR_BUILD_FOLDER%/bin > config.h
   - echo 'DBGFLAGS= ' >> config.h
   - echo 'CC=gcc ' >> config.h
   - echo 'CXX=g++ ' >> config.h
@@ -25,4 +26,5 @@ install:
   - echo 'SFX=.exe ' >> config.h
 
 build_script:
+  - bash -lc "cat config.h"
   - bash -lc "make"
