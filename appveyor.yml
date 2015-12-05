@@ -1,6 +1,7 @@
 os: Windows Server 2012
 
 install:
+  - set HOME=.
   - set MSYSTEM=MINGW64
   - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
   - "sh -lc \"pacman -S --noconfirm --needed
@@ -11,17 +12,14 @@ install:
       mingw-w64-x86_64-ncurses
       mingw-w64-x86_64-readline
     \""
-  - gcc --version
 
-
-  - curl -fsS -o netcdf-4.3.3.zip ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip
-  - 7z x netcdf-4.3.3.zip -o%APPVEYOR_BUILD_FOLDER% > nul
-
-  - "sh -lc \"exec 0</dev/null &&
-      cd $APPVEYOR_BUILD_FOLDER/netcdf-4.3.3 &&
-      ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64 --disable-dap &&
-      make install
-    \""
+  # - curl -fsS -o netcdf-4.3.3.zip ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip
+  # - 7z x netcdf-4.3.3.zip -o%APPVEYOR_BUILD_FOLDER% > nul
+  # - "sh -lc \"exec 0</dev/null &&
+  #     cd $APPVEYOR_BUILD_FOLDER/netcdf-4.3.3 &&
+  #     ./configure --enable-static --disable-netcdf-4 --prefix=/usr/local/ --disable-dap &&
+  #     make install
+  #   \""
 
   - echo CPPTRAJBIN=%APPVEYOR_BUILD_FOLDER%/bin > config.h
   - echo 'DBGFLAGS= ' >> config.h
@@ -37,9 +35,9 @@ install:
   - echo 'LIBCPPTRAJ=nolibcpptraj ' >> config.h
   - echo 'FFT_DEPEND=pub_fft.o ' >> config.h
   - echo 'FFT_LIB=pub_fft.o ' >> config.h
-  - echo 'LDFLAGS= -lreadline -lncurses -larpack -lnetcdf -lopenblas -lbz2 -lz  -lgfortran -lquadmath -w  -static ' >> config.h
+  - echo 'LDFLAGS=-lreadline -lncurses -larpack -L/usr/local/lib -lnetcdf -lopenblas -lbz2 -lz  -lgfortran -lquadmath -w  -static ' >> config.h
   - echo 'SFX=.exe ' >> config.h
 
 build_script:
-  - bash -lc "cat config.h"
-  - bash -lc "make"
+  - sh -lc "config.h"
+  - sh -lc "make"
