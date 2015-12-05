@@ -3,7 +3,7 @@ os: Windows Server 2012
 install:
   - set HOME=.
   - set MSYSTEM=MINGW64
-  - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
+  - set PATH=C:/msys64/usr/bin;C:/msys64/mingw64/bin;%PATH%
   - "sh -lc \"pacman -S --noconfirm --needed
       mingw-w64-x86_64-openblas
       mingw-w64-x86_64-arpack
@@ -26,14 +26,14 @@ install:
      fi
   \""
 
-  - sh -lc "echo \"CPPTRAJBIN=$(C:/msys64/usr/bin/pwd)/bin\" > config.h"
+  - sh -lc "echo \"CPPTRAJBIN=$(pwd)/bin\" > config.h"
   - echo DBGFLAGS= >> config.h
   - echo CC=gcc >> config.h
   - echo CXX=g++ >> config.h
   - echo FC=gfortran >> config.h
-  - echo CFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline $(DBGFLAGS) >> config.h
-  - echo CXXFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline $(DBGFLAGS) >> config.h
-  - echo FFLAGS= -O3 -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline/ -ffree-form $(DBGFLAGS) >> config.h
+  - echo CFLAGS=   -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline $(DBGFLAGS) >> config.h
+  - echo CXXFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline $(DBGFLAGS) >> config.h
+  - echo FFLAGS=   -O3       -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline -ffree-form $(DBGFLAGS) >> config.h
   - echo READLINE= >> config.h
   - echo READLINE_HOME=/mingw64/lib/ >> config.h
   - echo READLINE_TARGET=/mingw64/lib/libreadline.a >> config.h
@@ -50,3 +50,8 @@ build_script:
 
 cache:
   - C:/msys64/usr/local/ -> appveyor.yml
+
+artifacts:
+  - path: bin
+    name: cpptraj
+    type: zip
