@@ -15,7 +15,9 @@ install:
   - 7z x netcdf-4.3.3.zip -o%APPVEYOR_BUILD_FOLDER%/netcdf-4.3.3 > nul
 
   - "sh -lc \"exec 0</dev/null &&
+      ls $APPVEYOR_BUILD_FOLDER &&
       cd $APPVEYOR_BUILD_FOLDER/netcdf-4.3.3 &&
+      ls &&
       ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64 &&
       make install
     \""
