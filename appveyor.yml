@@ -22,23 +22,23 @@ install:
   #   \""
 
   - echo CPPTRAJBIN=%APPVEYOR_BUILD_FOLDER%/bin > config.h
-  - echo 'DBGFLAGS= ' >> config.h
-  - echo 'CC=gcc ' >> config.h
-  - echo 'CXX=g++ ' >> config.h
-  - echo 'FC=gfortran ' >> config.h
-  - echo 'CFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline $(DBGFLAGS) ' >> config.h
-  - echo 'CXXFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline $(DBGFLAGS) ' >> config.h
-  - echo 'FFLAGS= -O3 -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline/ -ffree-form $(DBGFLAGS) ' >> config.h
-  - echo 'READLINE= ' >> config.h
-  - echo 'READLINE_HOME=/mingw64/lib/ ' >> config.h
-  - echo 'READLINE_TARGET=/mingw64/lib/libreadline.a ' >> config.h
-  - echo 'LIBCPPTRAJ=nolibcpptraj ' >> config.h
-  - echo 'FFT_DEPEND=pub_fft.o ' >> config.h
-  - echo 'FFT_LIB=pub_fft.o ' >> config.h
-  - echo 'LDFLAGS=-lreadline -lncurses -larpack -L/usr/local/lib -lnetcdf -lopenblas -lbz2 -lz  -lgfortran -lquadmath -w  -static ' >> config.h
-  - echo 'SFX=.exe ' >> config.h
+  - echo DBGFLAGS= >> config.h
+  - echo CC=gcc >> config.h
+  - echo CXX=g++ >> config.h
+  - echo FC=gfortran >> config.h
+  - echo CFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline $(DBGFLAGS) >> config.h
+  - echo CXXFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline $(DBGFLAGS) >> config.h
+  - echo FFLAGS= -O3 -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline/ -ffree-form $(DBGFLAGS) >> config.h
+  - echo READLINE= >> config.h
+  - echo READLINE_HOME=/mingw64/lib/ >> config.h
+  - echo READLINE_TARGET=/mingw64/lib/libreadline.a >> config.h
+  - echo LIBCPPTRAJ=nolibcpptraj >> config.h
+  - echo FFT_DEPEND=pub_fft.o >> config.h
+  - echo FFT_LIB=pub_fft.o >> config.h
+  - echo LDFLAGS=-lreadline -lncurses -larpack -L/usr/local/lib -lnetcdf -lopenblas -lbz2 -lz  -lgfortran -lquadmath -w  -static >> config.h
+  - echo SFX=.exe >> config.h
 
 
 build_script:
-  - sh -lc "pwd; cd $APPVEYOR_BUILD_FOLDER; cat config.h"
+  - sh -lc "pwd; cd $APPVEYOR_BUILD_FOLDER; pwd; cat config.h"
   - sh -lc "make"
