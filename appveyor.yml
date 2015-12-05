@@ -10,14 +10,14 @@ install:
       mingw-w64-x86_64-ncurses
       mingw-w64-x86_64-readline
     \""
+  - gcc --version
+
 
   - curl -fsS -o netcdf-4.3.3.zip ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip
   - 7z x netcdf-4.3.3.zip -o%APPVEYOR_BUILD_FOLDER% > nul
 
   - "sh -lc \"exec 0</dev/null &&
-      ls $APPVEYOR_BUILD_FOLDER &&
       cd $APPVEYOR_BUILD_FOLDER/netcdf-4.3.3 &&
-      ls &&
       ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64 &&
       make install
     \""
