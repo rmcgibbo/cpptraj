@@ -38,6 +38,7 @@ install:
   - echo 'LDFLAGS=-lreadline -lncurses -larpack -L/usr/local/lib -lnetcdf -lopenblas -lbz2 -lz  -lgfortran -lquadmath -w  -static ' >> config.h
   - echo 'SFX=.exe ' >> config.h
 
+
 build_script:
   - sh -lc "config.h"
   - sh -lc "make"
