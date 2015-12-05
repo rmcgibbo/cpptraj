@@ -5,9 +5,11 @@ install:
   - bash -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-openblas mingw-w64-x86_64-arpack mingw-w64-x86_64-ncurses mingw-w64-x86_64-readline unzip"
   - bash -lc "wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip"
   - bash -lc "unzip netcdf-4.3.3.zip > /dev/null"
-  - bash -lc "cd netcdf-4.3.3; bash ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64; make install"
+  - cd netcdf-4.3.3
+  - exec 0</dev/null; bash ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64
+  - bash -lc "make install"
 
-
+  - cd %APPVEYOR_BUILD_FOLDER%
   - echo CPPTRAJBIN=%APPVEYOR_BUILD_FOLDER%/bin > config.h
   - echo 'DBGFLAGS= ' >> config.h
   - echo 'CC=gcc ' >> config.h
