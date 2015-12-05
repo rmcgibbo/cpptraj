@@ -6,6 +6,7 @@ install:
   - "sh -lc \"pacman -S --noconfirm --needed
       mingw-w64-x86_64-openblas
       mingw-w64-x86_64-arpack
+      mingw-w64-x86_64-gcc
       mingw-w64-x86_64-gcc-fortran
       mingw-w64-x86_64-ncurses
       mingw-w64-x86_64-readline
