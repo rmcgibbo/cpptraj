@@ -6,10 +6,11 @@ install:
   - bash -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-openblas mingw-w64-x86_64-arpack mingw-w64-x86_64-ncurses mingw-w64-x86_64-readline unzip"
 
   - curl -fsS -o netcdf-4.3.3.zip ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip
-  - 7z x netcdf-4.3.3.zip
+  - 7z x netcdf-4.3.3.zip > nul
   - ls
   - cd netcdf-4.3.3
-  - exec 0</dev/null; bash ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64
+  - ls
+  - bash ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64
   - bash -lc "make install"
 
   - cd %APPVEYOR_BUILD_FOLDER%
