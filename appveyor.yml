@@ -40,5 +40,5 @@ install:
 
 
 build_script:
-  - sh -lc "config.h"
+  - sh -lc "pwd; cd $APPVEYOR_BUILD_FOLDER; cat config.h"
   - sh -lc "make"
