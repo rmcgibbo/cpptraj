@@ -3,7 +3,7 @@ os: Windows Server 2012
 install:
   - set MSYSTEM=MINGW64
   - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
-  - "sh -lc \"pacman -S --noconfirm
+  - "sh -lc \"pacman -S --noconfirm --needed
       mingw-w64-x86_64-openblas
       mingw-w64-x86_64-arpack
       mingw-w64-x86_64-gcc-fortran
@@ -12,9 +12,10 @@ install:
     \""
 
   - curl -fsS -o netcdf-4.3.3.zip ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip
-  - 7z x netcdf-4.3.3.zip > nul
-  - "sh --login -c \"exec 0</dev/null &&
-      cd netcdf-4.3.3 &&
+  - 7z x netcdf-4.3.3.zip -o%APPVEYOR_BUILD_FOLDER%/netcdf-4.3.3 > nul
+
+  - "sh -lc \"exec 0</dev/null &&
+      cd $APPVEYOR_BUILD_FOLDER/netcdf-4.3.3 &&
       ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64 &&
       make install
     \""
