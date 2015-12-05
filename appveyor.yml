@@ -1,0 +1,28 @@
+os: Windows Server 2012
+
+install:
+  - "SET PATH=C:\\msys64\\usr\\bin\\;C:\\msys64\\mingw64\\bin;%PATH%"
+  - bash -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-openblas mingw-w64-x86_64-arpack mingw-w64-x86_64-ncurses mingw-w64-x86_64-readline unzip"
+  - bash -lc "wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.zip"
+  - bash -lc "unzip netcdf-4.3.3.zip"
+  - bash -lc "cd netcdf-4.3.3; ./configure --enable-static --disable-netcdf-4 --prefix=/mingw64; make install"
+
+  - echo 'CPPTRAJBIN=/c/Users/Administrator/cpptraj/bin'  > config.h
+  - echo 'DBGFLAGS= ' >> config.h
+  - echo 'CC=gcc ' >> config.h
+  - echo 'CXX=g++ ' >> config.h
+  - echo 'FC=gfortran ' >> config.h
+  - echo 'CFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include -I/mingw64/include/readline $(DBGFLAGS) ' >> config.h
+  - echo 'CXXFLAGS= -O3 -Wall -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline $(DBGFLAGS) ' >> config.h
+  - echo 'FFLAGS= -O3 -DHASBZ2 -DHASGZ -DBINTRAJ -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/local/include -I/mingw64/include  -I/mingw64/include/readline/ -ffree-form $(DBGFLAGS) ' >> config.h
+  - echo 'READLINE= ' >> config.h
+  - echo 'READLINE_HOME=/mingw64/lib/ ' >> config.h
+  - echo 'READLINE_TARGET=/mingw64/lib/libreadline.a ' >> config.h
+  - echo 'LIBCPPTRAJ=nolibcpptraj ' >> config.h
+  - echo 'FFT_DEPEND=pub_fft.o ' >> config.h
+  - echo 'FFT_LIB=pub_fft.o ' >> config.h
+  - echo 'LDFLAGS= -lreadline -lncurses -larpack -lnetcdf -lopenblas -lbz2 -lz  -lgfortran -lquadmath -w  -static ' >> config.h
+  - echo 'SFX=.exe ' >> config.h
+
+build_script:
+  - bash -lc "make"
